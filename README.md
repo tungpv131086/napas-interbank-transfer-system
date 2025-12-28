@@ -103,7 +103,6 @@ napas-interbank-transfer-system/
 │   ├── NapasSimulation.sln        # Visual Studio Solution
 │   ├── .env.example               # Environment variables template
 │   ├── start.sh                   # Quick start script (Linux/Mac)
-│   └── README.md                  # Hướng dẫn source code
 │
 ├── 3- HUONG DAN/                   # Tài liệu hướng dẫn
 │   ├── HUONG_DAN_CAI_DAT_CHI_TIET.md  # Hướng dẫn cài đặt chi tiết
