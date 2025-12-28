@@ -1267,11 +1267,10 @@ Nếu gặp vấn đề không giải quyết được, vui lòng:
 
 ---
 
-**CHÚC BẠN THÀNH CÔNG!** 🎉🎓
 
 ---
 
 *Tài liệu này được viết cho dự án học tập "Hệ thống chuyển tiền liên ngân hàng qua NAPAS sử dụng kiến trúc Microservices"*
 
 *Phiên bản: 1.0*  
-*Ngày cập nhật: 28/12/2024*
+*Ngày cập nhật: 28/12/2025*
