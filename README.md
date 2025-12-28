@@ -1,4 +1,13 @@
 # Hệ Thống Chuyển Tiền Liên Ngân Hàng Nhanh 24/7 - Mô Phỏng NAPAS
+Đồ án môn **Các Hệ Thống Phân Tán** - Lớp M25CQHT01-B
+## 📚 Giảng viên hướng dẫn: TS. Kim Ngọc Bách
+## 👥 Nhóm 2
+
+- **Nguyễn Thị Bích Hà** - B25CHHT017
+- **Phạm Huy Hiển**      - B25CHHT019  
+- **Phạm Văn Tùng**      - B25CHHT064
+
+
 
 Một hệ thống mô phỏng hoàn chỉnh dựa trên kiến trúc microservices cho hệ thống chuyển tiền liên ngân hàng NAPAS (Tổng Công ty Thanh toán Quốc gia Việt Nam) được xây dựng với .NET 8, PostgreSQL và RabbitMQ.
 
