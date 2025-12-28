@@ -107,10 +107,6 @@ napas-interbank-transfer-system/
 │
 ├── 3- HUONG DAN/                   # Tài liệu hướng dẫn
 │   ├── HUONG_DAN_CAI_DAT_CHI_TIET.md  # Hướng dẫn cài đặt chi tiết
-│   ├── KICH_BAN_DEMO.md               # Kịch bản demo
-│   ├── SLIDE_TEMPLATE.md              # Template slides thuyết trình
-│   ├── CAU_HOI_TRA_LOI.md             # Câu hỏi và trả lời mẫu
-│   └── CHECKLIST_DEMO.md              # Checklist demo (in ra)
 │
 ├── .gitignore                      # Git ignore file
 └── README.md                       # File này
