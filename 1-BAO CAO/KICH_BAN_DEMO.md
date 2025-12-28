@@ -331,8 +331,4 @@ Bạn đã thành công nếu hội đồng/giảng viên:
 4. Nhận ra tính ứng dụng thực tế
 5. Đặt các câu hỏi kỹ thuật sâu
 
----
 
-**Nhớ rằng**: Bạn đã xây dựng một hệ thống hoàn chỉnh, hoạt động tốt. Hãy tự tin và tự hào về công việc của mình!
-
-**Chúc may mắn với bài thuyết trình!**
