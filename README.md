@@ -609,4 +609,3 @@ dotnet run
 - Sửa vấn đề CORS và kết nối giữa frontend và backend
 - Cho phép giao tiếp phù hợp giữa các dịch vụ trong Docker network
 
-**Xây dựng với ❤️ để học kiến trúc microservices**
