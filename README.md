@@ -1,5 +1,5 @@
-# Hệ Thống Chuyển Tiền Liên Ngân Hàng Nhanh 24/7 - Mô Phỏng NAPAS
-Đồ án môn **Các Hệ Thống Phân Tán** - Lớp M25CQHT01-B
+### Hệ Thống Chuyển Tiền Liên Ngân Hàng Nhanh 24/7 - Mô Phỏng NAPAS
+## Bài Tập Nhóm Môn **Các Hệ Thống Phân Tán** - Lớp M25CQHT01-B
 ## 📚 Giảng viên hướng dẫn: TS. Kim Ngọc Bách
 ## 👥 Nhóm 2
 
