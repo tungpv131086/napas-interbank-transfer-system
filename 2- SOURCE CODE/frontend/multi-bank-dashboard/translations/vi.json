@@ -1,0 +1,137 @@
+{
+  "common": {
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "submit": "Gửi",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "close": "Đóng",
+    "refresh": "Làm mới",
+    "select": "Chọn",
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "warning": "Cảnh báo",
+    "info": "Thông tin",
+    "confirm": "Xác nhận",
+    "bankA": "Ngân hàng A",
+    "bankB": "Ngân hàng B",
+    "bankC": "Ngân hàng C"
+  },
+  "header": {
+    "title": "Bảng Điều Khiển Đa Ngân Hàng",
+    "subtitle": "Quản lý nhiều tài khoản ngân hàng với cập nhật thời gian thực qua NAPAS",
+    "connectionStatus": "Trạng thái kết nối"
+  },
+  "tabs": {
+    "admin": "Quản trị",
+    "bankA": "Ngân hàng A",
+    "bankB": "Ngân hàng B",
+    "bankC": "Ngân hàng C"
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "usernameplaceholder": "Nhập tên đăng nhập",
+    "passwordPlaceholder": "Nhập mật khẩu",
+    "loginButton": "Đăng nhập",
+    "demoCredentials": "Thông tin đăng nhập mẫu đã được điền sẵn",
+    "loginSuccess": "Đã đăng nhập vào {bankName}",
+    "loginFailed": "Đăng nhập thất bại: {error}",
+    "realTimeEnabled": "Đã bật cập nhật thời gian thực cho {bankName}",
+    "realTimeFailed": "Không thể kết nối cập nhật thời gian thực"
+  },
+  "admin": {
+    "title": "Quản Trị Hệ Thống",
+    "description": "Sử dụng các công cụ này để khởi tạo cơ sở dữ liệu và quản lý dữ liệu mẫu cho việc thử nghiệm.",
+    "warning": "Các thao tác này ảnh hưởng đến cơ sở dữ liệu thực tế.",
+    "authService": "Dịch Vụ Xác Thực",
+    "authServiceDescription": "Quản lý xác thực và người dùng",
+    "createTables": "Tạo Bảng",
+    "seedUsers": "Tạo Người Dùng Mẫu",
+    "seedAccounts": "Tạo Tài Khoản Mẫu",
+    "resetUsers": "Đặt Lại Người Dùng",
+    "resetData": "Đặt Lại Dữ Liệu",
+    "bankAdmin": "Quản Trị {bankName}",
+    "manageAccounts": "Quản lý tài khoản và giao dịch",
+    "confirmCreateTables": "Tạo bảng trong cơ sở dữ liệu {name}?",
+    "confirmSeed": "Bạn có chắc chắn muốn tạo dữ liệu mẫu cho {name}?",
+    "confirmReset": "⚠️ CẢNH BÁO: Thao tác này sẽ XÓA TẤT CẢ {type} cho {name}!\n\nBạn có chắc chắn muốn tiếp tục?",
+    "confirmResetFinal": "Hành động này KHÔNG THỂ HOÀN TÁC! Tất cả dữ liệu sẽ bị xóa vĩnh viễn.\n\nHãy nghĩ CÓ trong đầu nếu bạn hoàn toàn chắc chắn.",
+    "confirmAuthReset": "⚠️ CẢNH BÁO: Xóa tất cả người dùng trong Dịch Vụ Xác Thực?\n\nThao tác này không thể hoàn tác!",
+    "accounts": "tài khoản và giao dịch",
+    "users": "người dùng"
+  },
+  "dashboard": {
+    "accountBalance": "Số Dư Tài Khoản",
+    "selectAccount": "Chọn Tài Khoản",
+    "selectAccountPrompt": "Chọn tài khoản để xem số dư",
+    "availableBalance": "Số Dư Khả Dụng",
+    "makeTransfer": "Thực Hiện Chuyển Khoản",
+    "transactionHistory": "Lịch Sử Giao Dịch",
+    "noTransactions": "Không tìm thấy giao dịch",
+    "selectAccountForTransactions": "Chọn tài khoản để xem giao dịch",
+    "logoutSuccess": "Đã đăng xuất khỏi {bankName}"
+  },
+  "transfer": {
+    "transferType": "Loại Chuyển Khoản",
+    "internal": "Nội bộ (Cùng Ngân hàng)",
+    "interbank": "Liên ngân hàng (qua NAPAS)",
+    "destinationBank": "Ngân Hàng Đích",
+    "toAccountNumber": "Số Tài Khoản Nhận",
+    "toAccountPlaceholder": "Nhập số tài khoản",
+    "amount": "Số Tiền",
+    "amountPlaceholder": "0.00",
+    "description": "Nội Dung",
+    "descriptionPlaceholder": "Nội dung chuyển khoản",
+    "executeTransfer": "Thực Hiện Chuyển Khoản",
+    "transferSuccess": "✅ Chuyển khoản thành công! Mã giao dịch: {transactionId}",
+    "transferFailed": "❌ {error}",
+    "transferInitiated": "Đã khởi tạo chuyển khoản {amount}",
+    "selectAccountWarning": "Vui lòng chọn tài khoản trước"
+  },
+  "transaction": {
+    "internal": "NỘI BỘ",
+    "interbank": "LIÊN NGÂN HÀNG",
+    "success": "THÀNH CÔNG",
+    "pending": "ĐANG XỬ LÝ",
+    "failed": "THẤT BẠI",
+    "from": "Từ",
+    "to": "Đến",
+    "amount": "Số tiền",
+    "status": "Trạng thái",
+    "type": "Loại",
+    "date": "Ngày"
+  },
+  "connection": {
+    "connected": "Đã kết nối - Cập nhật thời gian thực đang hoạt động",
+    "connecting": "Đang kết nối...",
+    "disconnected": "Đã ngắt kết nối",
+    "idle": "Chưa đăng nhập",
+    "reconnecting": "Đang kết nối lại với {bankName}...",
+    "reconnected": "Đã kết nối lại với {bankName}",
+    "lostConnection": "Mất kết nối với {bankName}"
+  },
+  "notification": {
+    "balanceUpdated": "Số dư đã cập nhật cho {accountNumber}: {balance}",
+    "transactionReceived": "Đã nhận {amount} từ {fromBank} ({fromAccount})",
+    "transferInitiated": "Đã khởi tạo chuyển khoản {amount}",
+    "transferFailed": "Chuyển khoản thất bại: {error}",
+    "operationSuccess": "{operation} thành công",
+    "operationFailed": "{operation} thất bại: {error}"
+  },
+  "language": {
+    "select": "Ngôn ngữ",
+    "english": "English",
+    "vietnamese": "Tiếng Việt"
+  },
+  "currency": {
+    "code": "VND",
+    "symbol": "₫"
+  }
+}

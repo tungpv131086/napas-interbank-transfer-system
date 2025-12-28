@@ -1,0 +1,234 @@
+version: '3.8'
+
+services:
+  # PostgreSQL databases
+  postgres-auth:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: authdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-auth-data:/var/lib/postgresql/data
+    networks:
+      - napas-network
+
+  postgres-napas:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: napasdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-napas-data:/var/lib/postgresql/data
+    networks:
+      - napas-network
+
+  postgres-banka:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: bankadb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-banka-data:/var/lib/postgresql/data
+    networks:
+      - napas-network
+
+  postgres-bankb:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: bankbdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres-bankb-data:/var/lib/postgresql/data
+    networks:
+      - napas-network
+
+  postgres-bankc:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: bankcdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5436:5432"
+    volumes:
+      - postgres-bankc-data:/var/lib/postgresql/data
+    networks:
+      - napas-network
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    networks:
+      - napas-network
+
+  # Auth Service
+  auth-service:
+    build:
+      context: .
+      dockerfile: src/AuthService/AuthService/Dockerfile
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
+      - ConnectionStrings__DefaultConnection=Host=postgres-auth;Database=authdb;Username=postgres;Password=postgres123
+    depends_on:
+      - postgres-auth
+    networks:
+      - napas-network
+
+  # NAPAS Service
+  napas-service:
+    build:
+      context: .
+      dockerfile: src/NapasService/NapasService/Dockerfile
+    ports:
+      - "5002:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
+      - ConnectionStrings__DefaultConnection=Host=postgres-napas;Database=napasdb;Username=postgres;Password=postgres123
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+    depends_on:
+      - postgres-napas
+      - rabbitmq
+    networks:
+      - napas-network
+
+  # Bank A Service
+  banka-service:
+    build:
+      context: .
+      dockerfile: src/BankA/BankA/Dockerfile
+    ports:
+      - "5003:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
+      - ConnectionStrings__DefaultConnection=Host=postgres-banka;Database=bankadb;Username=postgres;Password=postgres123
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - Bank__Code=BANKA
+      - Bank__Name=Bank A
+      - NapasService__Url=http://napas-service:8080
+    depends_on:
+      - postgres-banka
+      - rabbitmq
+    networks:
+      - napas-network
+
+  # Bank B Service
+  bankb-service:
+    build:
+      context: .
+      dockerfile: src/BankB/BankB/Dockerfile
+    ports:
+      - "5004:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
+      - ConnectionStrings__DefaultConnection=Host=postgres-bankb;Database=bankbdb;Username=postgres;Password=postgres123
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - Bank__Code=BANKB
+      - Bank__Name=Bank B
+      - NapasService__Url=http://napas-service:8080
+    depends_on:
+      - postgres-bankb
+      - rabbitmq
+    networks:
+      - napas-network
+
+  # Bank C Service
+  bankc-service:
+    build:
+      context: .
+      dockerfile: src/BankC/BankC/Dockerfile
+    ports:
+      - "5005:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
+      - ConnectionStrings__DefaultConnection=Host=postgres-bankc;Database=bankcdb;Username=postgres;Password=postgres123
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - Bank__Code=BANKC
+      - Bank__Name=Bank C
+      - NapasService__Url=http://napas-service:8080
+    depends_on:
+      - postgres-bankc
+      - rabbitmq
+    networks:
+      - napas-network
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: .
+      dockerfile: src/ApiGateway/ApiGateway/Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
+    depends_on:
+      - auth-service
+      - napas-service
+      - banka-service
+      - bankb-service
+      - bankc-service
+    networks:
+      - napas-network
+
+  # Multi-Bank Dashboard Web Server
+  dashboard:
+    build:
+      context: ./frontend/multi-bank-dashboard
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - napas-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
+
+networks:
+  napas-network:
+    driver: bridge
+
+volumes:
+  postgres-auth-data:
+  postgres-napas-data:
+  postgres-banka-data:
+  postgres-bankb-data:
+  postgres-bankc-data:
+  rabbitmq-data:

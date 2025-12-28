@@ -1,0 +1,137 @@
+{
+  "common": {
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "refresh": "Refresh",
+    "select": "Select",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information",
+    "confirm": "Confirm",
+    "bankA": "Bank A",
+    "bankB": "Bank B",
+    "bankC": "Bank C"
+  },
+  "header": {
+    "title": "Multi-Bank Dashboard",
+    "subtitle": "Manage multiple bank accounts with real-time updates via NAPAS",
+    "connectionStatus": "Connection Status"
+  },
+  "tabs": {
+    "admin": "Admin",
+    "bankA": "Bank A",
+    "bankB": "Bank B",
+    "bankC": "Bank C"
+  },
+  "login": {
+    "title": "Login",
+    "username": "Username",
+    "password": "Password",
+    "usernameplaceholder": "Enter username",
+    "passwordPlaceholder": "Enter password",
+    "loginButton": "Login",
+    "demoCredentials": "Demo credentials are pre-filled",
+    "loginSuccess": "Logged in to {bankName}",
+    "loginFailed": "Login failed: {error}",
+    "realTimeEnabled": "Real-time updates enabled for {bankName}",
+    "realTimeFailed": "Failed to connect real-time updates"
+  },
+  "admin": {
+    "title": "System Administration",
+    "description": "Use these tools to initialize databases and manage demo data for testing.",
+    "warning": "These operations affect the actual databases.",
+    "authService": "Auth Service",
+    "authServiceDescription": "Manage authentication and users",
+    "createTables": "Create Tables",
+    "seedUsers": "Seed Users",
+    "seedAccounts": "Seed Accounts",
+    "resetUsers": "Reset Users",
+    "resetData": "Reset Data",
+    "bankAdmin": "{bankName} Admin",
+    "manageAccounts": "Manage accounts and transactions",
+    "confirmCreateTables": "Create tables in {name} database?",
+    "confirmSeed": "Are you sure you want to seed sample data for {name}?",
+    "confirmReset": "⚠️ WARNING: This will delete ALL {type} for {name}!\n\nAre you sure you want to continue?",
+    "confirmResetFinal": "This action CANNOT be undone! All data will be permanently deleted.\n\nType YES in your mind if you're absolutely sure.",
+    "confirmAuthReset": "⚠️ WARNING: Delete all users in Auth Service?\n\nThis cannot be undone!",
+    "accounts": "accounts and transactions",
+    "users": "users"
+  },
+  "dashboard": {
+    "accountBalance": "Account Balance",
+    "selectAccount": "Select Account",
+    "selectAccountPrompt": "Select an account to view balance",
+    "availableBalance": "Available Balance",
+    "makeTransfer": "Make Transfer",
+    "transactionHistory": "Transaction History",
+    "noTransactions": "No transactions found",
+    "selectAccountForTransactions": "Select an account to view transactions",
+    "logoutSuccess": "Logged out from {bankName}"
+  },
+  "transfer": {
+    "transferType": "Transfer Type",
+    "internal": "Internal (Same Bank)",
+    "interbank": "Interbank (via NAPAS)",
+    "destinationBank": "Destination Bank",
+    "toAccountNumber": "To Account Number",
+    "toAccountPlaceholder": "Enter account number",
+    "amount": "Amount",
+    "amountPlaceholder": "0.00",
+    "description": "Description",
+    "descriptionPlaceholder": "Transfer description",
+    "executeTransfer": "Execute Transfer",
+    "transferSuccess": "✅ Transfer successful! Transaction ID: {transactionId}",
+    "transferFailed": "❌ {error}",
+    "transferInitiated": "Transfer of {amount} initiated",
+    "selectAccountWarning": "Please select an account first"
+  },
+  "transaction": {
+    "internal": "INTERNAL",
+    "interbank": "INTERBANK",
+    "success": "SUCCESS",
+    "pending": "PENDING",
+    "failed": "FAILED",
+    "from": "From",
+    "to": "To",
+    "amount": "Amount",
+    "status": "Status",
+    "type": "Type",
+    "date": "Date"
+  },
+  "connection": {
+    "connected": "Connected - Real-time updates active",
+    "connecting": "Connecting...",
+    "disconnected": "Disconnected",
+    "idle": "Not logged in",
+    "reconnecting": "Reconnecting to {bankName}...",
+    "reconnected": "Reconnected to {bankName}",
+    "lostConnection": "Lost connection to {bankName}"
+  },
+  "notification": {
+    "balanceUpdated": "Balance updated for {accountNumber}: {balance}",
+    "transactionReceived": "Received {amount} from {fromBank} ({fromAccount})",
+    "transferInitiated": "Transfer of {amount} initiated",
+    "transferFailed": "Transfer failed: {error}",
+    "operationSuccess": "{operation} successful",
+    "operationFailed": "{operation} failed: {error}"
+  },
+  "language": {
+    "select": "Language",
+    "english": "English",
+    "vietnamese": "Tiếng Việt"
+  },
+  "currency": {
+    "code": "USD",
+    "symbol": "$"
+  }
+}
