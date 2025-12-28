@@ -69,22 +69,51 @@ Một hệ thống mô phỏng hoàn chỉnh dựa trên kiến trúc microservi
 ## Cấu Trúc Dự Án
 
 ```
-napas-simulation/
-├── src/
-│   ├── AuthService/       # Dịch vụ xác thực JWT
-│   ├── NapasService/      # Dịch vụ định tuyến NAPAS trung tâm
-│   ├── BankA/             # Microservice Ngân hàng A
-│   ├── BankB/             # Microservice Ngân hàng B
-│   ├── BankC/             # Microservice Ngân hàng C
-│   ├── ApiGateway/        # API Gateway Ocelot
-│   └── Shared/            # Các model và helper dùng chung
-├── frontend/
-│   ├── multi-bank-dashboard/  # Dashboard thống nhất (nginx-served)
-│   ├── bank-a/                # Giao diện web Ngân hàng A
-│   ├── bank-b/                # Giao diện web Ngân hàng B
-│   └── bank-c/                # Giao diện web Ngân hàng C
-├── docker-compose.yml    # Cài đặt cơ sở hạ tầng hoàn chỉnh
-└── README.md
+napas-interbank-transfer-system/
+│
+├── 1-BAO CAO/                      # Báo cáo đồ án
+│   ├── diagrams/                   # Các sơ đồ kiến trúc
+│   │   ├── 01-erd-auth-service.md
+│   │   ├── 02-erd-napas-service.md
+│   │   ├── 03-erd-bank-service.md
+│   │   ├── 04-sequence-interbank-transfer.md
+│   │   ├── 05-architecture-overview.md
+│   │   ├── 06-data-flow-diagram.md
+│   │   └── README.md
+│   ├── Báo cáo.pdf                # Báo cáo chính (PDF)
+│   
+│
+├── 2- SOURCE CODE/                 # Source code đầy đủ
+│   ├── src/                        # Backend services
+│   │   ├── AuthService/           # Dịch vụ xác thực JWT
+│   │   ├── NapasService/          # Dịch vụ định tuyến NAPAS
+│   │   ├── BankA/                 # Microservice Ngân hàng A
+│   │   ├── BankB/                 # Microservice Ngân hàng B
+│   │   ├── BankC/                 # Microservice Ngân hàng C
+│   │   ├── ApiGateway/            # API Gateway Ocelot
+│   │   └── Shared/                # Models và helpers dùng chung
+│   │
+│   ├── frontend/                   # Frontend applications
+│   │   ├── multi-bank-dashboard/  # Dashboard thống nhất (nginx)
+│   │   ├── bank-a/                # Giao diện Ngân hàng A
+│   │   ├── bank-b/                # Giao diện Ngân hàng B
+│   │   └── bank-c/                # Giao diện Ngân hàng C
+│   │
+│   ├── docker-compose.yml         # Docker Compose configuration
+│   ├── NapasSimulation.sln        # Visual Studio Solution
+│   ├── .env.example               # Environment variables template
+│   ├── start.sh                   # Quick start script (Linux/Mac)
+│   └── README.md                  # Hướng dẫn source code
+│
+├── 3- HUONG DAN/                   # Tài liệu hướng dẫn
+│   ├── HUONG_DAN_CAI_DAT_CHI_TIET.md  # Hướng dẫn cài đặt chi tiết
+│   ├── KICH_BAN_DEMO.md               # Kịch bản demo
+│   ├── SLIDE_TEMPLATE.md              # Template slides thuyết trình
+│   ├── CAU_HOI_TRA_LOI.md             # Câu hỏi và trả lời mẫu
+│   └── CHECKLIST_DEMO.md              # Checklist demo (in ra)
+│
+├── .gitignore                      # Git ignore file
+└── README.md                       # File này
 ```
 
 ## Sơ Đồ Cơ Sở Dữ Liệu
