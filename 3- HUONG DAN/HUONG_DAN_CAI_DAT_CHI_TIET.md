@@ -1263,7 +1263,7 @@ Nếu gặp vấn đề không giải quyết được, vui lòng:
 1. Kiểm tra lại **Troubleshooting Checklist** (mục 10.5)
 2. Xem logs chi tiết: `docker-compose logs -f`
 3. Google lỗi cụ thể
-4. Liên hệ người hướng dẫn
+4. Liên hệ các chuyên gia đầu ngành
 
 ---
 
