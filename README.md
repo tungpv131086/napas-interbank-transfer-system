@@ -585,18 +585,4 @@ dotnet run
 - Sửa vấn đề CORS và kết nối giữa frontend và backend
 - Cho phép giao tiếp phù hợp giữa các dịch vụ trong Docker network
 
-## Giấy Phép
-
-Dự án này dành cho mục đích giáo dục. Thoải mái sử dụng cho dự án capstone/luận văn đại học của bạn.
-
-## Hỗ Trợ
-
-Nếu có vấn đề hoặc câu hỏi, vui lòng tạo issue trong repository.
-
-## Lời Cảm Ơn
-
-Lấy cảm hứng từ hệ thống chuyển tiền liên ngân hàng NAPAS (Tổng Công ty Thanh toán Quốc gia Việt Nam) thực tế.
-
----
-
 **Xây dựng với ❤️ để học kiến trúc microservices**
