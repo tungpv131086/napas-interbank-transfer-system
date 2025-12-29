@@ -84,43 +84,43 @@ sequenceDiagram
     Note over User,DB_B: Complete: $5000 transferred<br/>from Bank A to Bank B via NAPAS
 ```
 
-## Timeline
+## Timeline (Tiến trình thời gian)
 
-| Step | Actor | Time | Description |
+| Bước | Actor | Thời gian | Mô tả |
 |------|-------|------|-------------|
-| 1-8 | Bank A | ~100ms | Validate and deduct from sender |
-| 9 | RabbitMQ | ~10ms | Message queued to NAPAS |
-| 10 | API | instant | Response to user |
-| 11-13 | NAPAS | ~50ms | Log and route transaction |
-| 14 | RabbitMQ | ~10ms | Message queued to Bank B |
-| 15-20 | Bank B | ~100ms | Credit receiver and save |
-| 21 | RabbitMQ | ~10ms | Result queued |
-| 22-24 | NAPAS | ~50ms | Update records and reconciliation |
-| **Total** | | **~2-3 sec** | **End-to-end completion** |
+| 1-8 | 🏦 Bank A | ~100ms | Xác thực và trừ tiền từ người gửi |
+| 9 | 📬 RabbitMQ| ~10ms | Message được đưa vào hàng đợi tới NAPAS |
+| 10 | 🚀 API | instant | Phản hồi cho người dùng |
+| 11-13 | 🏢 NAPAS | ~50ms | Ghi log và định tuyến giao dịch |
+| 14 | 📬 RabbitMQ | ~10ms | Message được đưa vào hàng đợi tới Bank B |
+| 15-20 | 🏦 Bank B| ~100ms | Cộng tiền cho người nhận và lưu |
+| 21 | 📬 RabbitMQ | ~10ms | Kết quả được đưa vào hàng đợi |
+| 22-24 | 🏢 NAPAS | ~50ms | Cập nhật records và reconciliation |
+| **⚡ Tổng** | | **~2-3 sec** | **Hoàn thành toàn bộ quá trình** |
 
-## Key Points
+## Các điểm chính (Key Points)
 
-1. **Immediate Deduction**: Sender's balance reduced immediately (prevents double-spending)
-2. **Asynchronous Processing**: No blocking wait for destination bank
-3. **Status Tracking**: PENDING → SUCCESS/FAILED
-4. **Message Persistence**: RabbitMQ ensures no message loss
-5. **Audit Trail**: Complete record in NAPAS for reconciliation
-6. **Error Handling**: Failed transfers create error records
-7. **Idempotency**: TransactionId ensures no duplicate processing
+1. **Trừ tiền ngay lập tức (Immediate Deduction)**: Số dư người gửi được trừ ngay (ngăn chặn chi tiêu hai lần - prevents double-spending)
+2. **Xử lý bất đồng bộ (Asynchronous Processing)**: Không chờ đợi (blocking wait) ngân hàng đích
+3. **Theo dõi trạng thái (Status Tracking)**: PENDING → SUCCESS/FAILED
+4. **Lưu trữ Message bền vững (Message Persistence)**: RabbitMQ đảm bảo không mất message
+5. **Nhật ký kiểm toán (Audit Trail)**: Ghi nhận đầy đủ tại NAPAS để phục vụ reconciliation (đối soát)
+6. **Xử lý lỗi (Error Handling)**: Giao dịch thất bại tạo ra error records
+7. **Tính bất biến (Idempotency)**: TransactionId đảm bảo không xử lý trùng lặp
 
-## Error Scenarios
+## Các kịch bản lỗi(Error Scenarios)
 
-### Scenario 1: Destination Account Not Found
-- Bank B returns FAILED status
-- Sender money already deducted
-- Requires manual refund or automatic compensation
+### Kịch bản 1: Tài khoản đích không tồn tại (Destination Account Not Found)
+- Bank B trả về status FAILED
+- Tiền người gửi đã bị trừ
+- Yêu cầu hoàn tiền thủ công hoặc bồi thường tự động (automatic compensation)
 
-### Scenario 2: Bank B Service Down
-- Message stays in 'transfer_bankb' queue
-- Automatic retry when service recovers
-- Message acknowledged only after successful processing
+### Kịch bản 2: Service Bank B bị down
+- Message vẫn nằm trong queue 'transfer_bankb'
+- Tự động retry (thử lại) khi service phục hồi
+- Message chỉ được acknowledged (xác nhận) sau khi xử lý thành công
 
-### Scenario 3: Network Failure
-- RabbitMQ message persistence ensures no loss
-- Unacknowledged messages redelivered
-- Idempotent processing handles duplicates
+### Kịch bản 3: Lỗi mạng (Network Failure)
+- RabbitMQ message persistence đảm bảo không mất dữ liệu
+- Các message chưa được acknowledged sẽ được gửi lại (redelivered)
+- Xử lý idempotent (bất biến) xử lý các duplicate (trùng lặp)
