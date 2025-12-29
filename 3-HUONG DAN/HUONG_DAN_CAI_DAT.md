@@ -1077,7 +1077,7 @@ docker-compose down --rmi all -v
 
 4. **Liên hệ nhóm:**
    - GitHub Issues: https://github.com/tungpv131086/napas-interbank-transfer-system/issues
-   - Email: [thêm email liên hệ]
+   - Email: tungpv131086@gmail.com
 
 ---
 
@@ -1112,10 +1112,9 @@ Hệ thống NAPAS Interbank Transfer đã được containerize hoàn toàn, d�
 
 **Thời gian setup:** ~15-20 phút (bao gồm tải images lần đầu)
 
-**Chúc Giảng viên trải nghiệm hệ thống thành công!** 🎉
 
 ---
 
-**Ngày cập nhật:** 29/12/2024  
+**Ngày cập nhật:** 29/12/2025  
 **Phiên bản:** 1.0  
 **Nhóm thực hiện:** Nhóm 2 - Lớp M25CQHT01-B
