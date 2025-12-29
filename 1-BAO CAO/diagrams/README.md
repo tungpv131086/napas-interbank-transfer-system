@@ -1,88 +1,88 @@
 # NAPAS Simulation - Architecture Diagrams
 
-This directory contains comprehensive Mermaid diagrams for the NAPAS 24/7 Fast Interbank Transfer System.
+Thư mục này chứa các sơ đồ Mermaid toàn diện cho Hệ thống Chuyển Tiền Nhanh Liên Ngân Hàng NAPAS 24/7.
 
-## 📊 Diagram Index
+## 📊 Danh Mục Sơ Đồ (Diagram Index)
 
-### 1. Entity Relationship Diagrams (ERDs)
+### 1. Sơ Đồ Quan Hệ Thực Thể (Entity Relationship Diagrams - ERDs)
 
 #### [01-erd-auth-service.md](01-erd-auth-service.md)
 **Auth Service Database Schema**
-- Users table with authentication credentials
-- Bank code associations
-- Role-based access
-- Seed data for demo users
+- Bảng Users với thông tin đăng nhập
+- Liên kết mã ngân hàng (bank code associations)
+- Phân quyền theo vai trò (role-based access)
+- Dữ liệu mẫu (seed data) cho users demo
 
 #### [02-erd-napas-service.md](02-erd-napas-service.md)
 **NAPAS Service Database Schema**
-- NapasTransactions: Complete interbank transaction records
-- ReconciliationRecords: Settlement and audit trail
-- Indexes and business rules
+- NapasTransactions: Bản ghi giao dịch liên ngân hàng đầy đủ
+- ReconciliationRecords: Bù trừ thanh toán và audit trail
+- Quy tắc nghiệp vụ và ràng buộc (constraints)
 
 #### [03-erd-bank-service.md](03-erd-bank-service.md)
 **Bank Service Database Schema (A, B, C)**
-- Accounts: Customer accounts with balances
-- Transactions: Internal and interbank transfers
-- Seed data for all three banks
+- Accounts: Tài khoản khách hàng với số dư
+- Transactions: Chuyển tiền nội bộ và liên ngân hàng
+- Dữ liệu mẫu cho cả ba ngân hàng
 - Business rules and constraints
 
-### 2. Process Diagrams
+### 2. Sơ Đồ Quy Trình (Process Diagrams)
 
 #### [04-sequence-interbank-transfer.md](04-sequence-interbank-transfer.md)
-**Interbank Transfer Sequence Diagram**
-- Complete step-by-step flow from sender to receiver
-- Shows all microservices interactions
-- Message queue communication
-- Database operations
-- Error handling scenarios
-- Timeline with performance metrics
+**Sequence Diagram Chuyển Tiền Liên Ngân Hàng**
+- Luồng chi tiết từng bước từ người gửi đến người nhận
+- Hiển thị tất cả tương tác giữa các microservices
+- Giao tiếp message queue
+- Các thao tác database
+- Các kịch bản xử lý lỗi
+- Timeline với các chỉ số hiệu năng
 
-### 3. Architecture Diagrams
+### 3. Sơ Đồ Kiến Trúc (Architecture Diagrams)
 
 #### [05-architecture-overview.md](05-architecture-overview.md)
-**High-Level System Architecture**
-- All microservices and their relationships
-- Database per service pattern
-- Message broker infrastructure
-- API Gateway routing
-- Frontend applications
+**Tổng Quan Kiến Trúc Hệ Thống Cấp Cao**
+- Tất cả microservices và quan hệ của chúng
+- Mẫu Database per Service
+- Hạ tầng Message broker
+- Định tuyến API Gateway
+- Các ứng dụng Frontend
 - Technology stack
-- Scalability considerations
+- Cân nhắc về khả năng mở rộng (scalability)
 
 #### [06-data-flow-diagram.md](06-data-flow-diagram.md)
-**Data Flow & Microservices Interaction**
-- Complete data flow through the system
-- Message queue patterns
-- Synchronous vs asynchronous flows
-- Error handling flows
-- Performance characteristics
-- Consistency models
+**Luồng Dữ Liệu & Tương Tác Microservices**
+- Luồng dữ liệu hoàn chỉnh qua hệ thống
+- Các mẫu message queue patterns
+- Luồng đồng bộ vs bất đồng bộ (synchronous vs asynchronous)
+- Luồng xử lý lỗi
+- Đặc tính hiệu năng
+- Mô hình nhất quán (consistency models)
 
-## 🎯 How to Use These Diagrams
+## 🎯 Cách Sử Dụng Các Sơ Đồ Này
 
-### Viewing Diagrams
+### Xem Sơ Đồ (Viewing Diagrams)
 
-All diagrams use **Mermaid** syntax and can be viewed in:
+Tất cả sơ đồ sử dụng cú pháp Mermaid và có thể xem trên:
 
-1. **GitHub**: Automatically rendered when viewing .md files
-2. **VS Code**: Install "Markdown Preview Mermaid Support" extension
-3. **Online**: Copy code to https://mermaid.live
-4. **Documentation Tools**: Most support Mermaid (GitBook, Docusaurus, etc.)
+1. **GitHub**: Tự động render khi xem files .md
+2. **VS Code**: Cài extension "Markdown Preview Mermaid Support"
+3. **Online**: Copy code vào https://mermaid.live
+4. **Documentation Tools**: Hầu hết đều hỗ trợ Mermaid (GitBook, Docusaurus, etc.)
 
-### For Presentations
+### Cho Bài Thuyết Trình (For Presentations)
 
-1. **Screenshot**: Take screenshots from GitHub or Mermaid Live
-2. **Export**: Use Mermaid Live to export as PNG/SVG
-3. **Live Demo**: Show directly in VS Code or GitHub
-4. **PowerPoint**: Copy exported images into slides
+1. **Screenshot**: Chụp từ GitHub hoặc Mermaid Live
+2. **Export**: Dùng Mermaid Live xuất PNG/SVG
+3. **Live Demo**: Hiển thị trực tiếp trong VS Code hoặc GitHub
+4. **PowerPoint**: Copy ảnh đã export vào slides
 
-### For Thesis/Capstone
+### Cho Luận Văn/Đồ Án (For Thesis/Capstone)
 
-Include these diagrams in your document:
+Đưa các sơ đồ này vào tài liệu:
 
-#### Chapter 3: System Design
-- Architecture Overview (Diagram 05)
-- Data Flow Diagram (Diagram 06)
+#### Chapter 3: Thiết Kế Hệ Thống
+- Tổng quan Kiến trúc (Diagram 05)
+- Sơ đồ Luồng Dữ liệu (Diagram 06)
 
 #### Chapter 4: Database Design
 - Auth Service ERD (Diagram 01)
@@ -93,70 +93,70 @@ Include these diagrams in your document:
 - Interbank Transfer Sequence (Diagram 04)
 - Data Flow Diagram (Diagram 06)
 
-## 🔍 Diagram Details
+## 🔍 Chi Tiết Sơ Đồ (Diagram Details)
 
 ### ERD Diagrams (01-03)
-- **Format**: Mermaid ER diagrams
-- **Content**:
-  - Table structures
-  - Relationships
-  - Constraints
+- **Định dạng**: Mermaid ER diagrams
+- **Nội dung**:
+  - Cấu trúc bảng (table structures)
+  - Quan hệ (relationships)
+  - Ràng buộc (constraints)
   - Indexes
-  - Seed data
-  - Business rules
+  - Dữ liệu mẫu (seed data)
+  - Quy tắc nghiệp vụ (business rules)
 
 ### Sequence Diagram (04)
-- **Format**: Mermaid sequence diagram
-- **Content**:
-  - Actor interactions
+- **Định dạng**: Mermaid sequence diagram
+- **Nội dung**:
+  - Tương tác Actor
   - Service calls
-  - Database operations
-  - Message queue flows
-  - Timeline annotations
-  - Error scenarios
+  - Thao tác Database
+  - Luồng Message queue
+  - Chú thích Timeline
+  - Kịch bản lỗi (error scenarios)
 
 ### Architecture Diagrams (05-06)
-- **Format**: Mermaid flowcharts/graphs
-- **Content**:
-  - Service topology
-  - Communication patterns
+- **Định dạng**: Mermaid flowcharts/graphs
+- **Nội dung**:
+  - Cấu trúc Service (service topology)
+  - Mẫu giao tiếp (communication patterns)
   - Technology stack
-  - Scalability options
-  - Monitoring points
+  - Tùy chọn mở rộng (scalability options)
+  - Điểm giám sát (monitoring points)
 
-## 📖 Reading Order
+## 📖 Thứ Tự Đọc (Reading Order)
 
-### For Understanding the System
-1. Start with **05-architecture-overview.md** (big picture)
-2. Read **06-data-flow-diagram.md** (how data moves)
-3. Review **04-sequence-interbank-transfer.md** (detailed flow)
-4. Study ERDs **01-03** (database design)
+### Để Hiểu Hệ Thống
+1. Bắt đầu với **05-architecture-overview.md** (bức tranh tổng thể)
+2. Đọc **06-data-flow-diagram.md** (dữ liệu di chuyển như thế nào)
+3. Xem **04-sequence-interbank-transfer.md**  (luồng chi tiết)
+4. Nghiên cứu ERDs **01-03** (thiết kế database)
 
-### For Implementation
-1. ERDs first **01-03** (database schema)
-2. Architecture **05** (service structure)
-3. Sequence **04** (implementation flow)
+### Để Triển Khai
+1. ERDs trước **01-03** (database schema)
+2. Kiến trúc **05** (cấu trúc service)
+3. Sequence **04** (luồng implementation)
 4. Data flow **06** (validation)
 
 ### For Presentation
-1. **05** - Show overall architecture
-2. **04** - Demonstrate interbank transfer
-3. **02-03** - Explain data model
-4. **06** - Discuss scalability
+1. **05** - Hiển thị kiến trúc tổng thể
+2. **04** - Demo chuyển tiền liên ngân hàng
+3. **02-03** - Giải thích mô hình dữ liệu
+4. **06** - Thảo luận về khả năng mở rộng
 
-## 🎨 Diagram Styles
+## 🎨 Phong Cách Sơ Đồ (Diagram Styles)
 
-### Color Coding
-- **Purple/Blue**: Bank A related
-- **Green**: Bank B related
-- **Pink**: Bank C related
-- **Cyan**: NAPAS related
-- **Red**: Authentication related
-- **Yellow**: API Gateway
-- **Pink**: Message Queue
+### Mã Màu (Color Coding)
+- **Tím/Xanh dương**: Liên quan Bank A
+- **Xanh lá**: Liên quan Bank B
+- **Hồng**: Liên quan Bank C
+- **Cyan**: Liên quan Bank Napas
+- **Đỏ**: Authentication related
+- **Vàng**: API Gateway
+- **Hồng**: Message Queue
 
-### Symbols
-- **🏦**: Bank/Financial Institution
+### Ký Hiệu (Symbols)
+- **🏦**: Bank/Tổ chức tài chính
 - **📡**: API/Service Endpoint
 - **🗄️**: Database
 - **🔄**: Background Service
@@ -166,72 +166,47 @@ Include these diagrams in your document:
 - **🔐**: Authentication
 - **👤**: User
 
-## 🛠️ Editing Diagrams
+## 🛠️ Chỉnh Sửa Sơ Đồ (Editing Diagrams)
 
-To modify diagrams:
+Để sửa đổi sơ đồ:
 
-1. Edit the Mermaid code in the .md files
-2. Test in https://mermaid.live
-3. Copy updated code back to file
+1. Chỉnh sửa code Mermaid trong files .md
+2. Test tại https://mermaid.live
+3. Copy code đã cập nhật về file
 4. Commit changes
 
-### Mermaid Resources
-- [Official Docs](https://mermaid.js.org/)
+### Tài nguyên Mermaid:
+- [Tài liệu chính thức](https://mermaid.js.org/)
 - [Live Editor](https://mermaid.live)
 - [Cheat Sheet](https://jojozhuang.github.io/tutorial/mermaid-cheat-sheet/)
 
-## 📊 Print-Ready Versions
 
-To create print-ready diagrams:
 
-1. Open diagram in Mermaid Live
-2. Click "Actions" → "PNG" or "SVG"
-3. Download high-resolution image
-4. Insert into Word/LaTeX document
+## 🔗  Tham Chiếu Chéo (Cross-References)
 
-Recommended settings:
-- **Format**: PNG or SVG
-- **Resolution**: 300 DPI minimum
-- **Size**: Scale to fit page width
-
-## 🔗 Cross-References
-
-### Main Documentation
-- [README.md](../README.md) - Main project documentation
-- [ARCHITECTURE.md](../ARCHITECTURE.md) - Technical architecture details
-- [TESTING.md](../TESTING.md) - Testing scenarios
-- [DEMO_SCRIPT.md](../DEMO_SCRIPT.md) - Presentation guide
+### Tài Liệu Chính
+- [README.md](../README.md) - Tài liệu dự án chính
 
 ### Source Code
-- [src/](../src/) - Service implementations
-- [docker-compose.yml](../docker-compose.yml) - Infrastructure setup
-- [frontend/](../frontend/) - User interfaces
+- [src/](../src/) - Triển khai Services
+- [docker-compose.yml](../docker-compose.yml) - Setup hạ tầng
+- [frontend/](../frontend/) - Giao diện người dùng
 
-## 💡 Tips
 
-1. **For Academic Papers**: Export as high-quality SVG for perfect scaling
-2. **For Presentations**: Use PNG with transparent background
-3. **For Documentation**: Keep Mermaid code inline for easy updates
-4. **For Collaboration**: Share Mermaid Live links for review
+## 📝 Cập Nhật (Updates)
 
-## 📝 Updates
+Khi cập nhật sơ đồ:
+- [ ] Cập nhật tài liệu tương ứng
+- [ ] Test render trong nhiều viewers
+- [ ] Cập nhật README này nếu thêm sơ đồ mới
+- [ ] Ghi chú thay đổi trong commit message
 
-When updating diagrams:
-- [ ] Update corresponding documentation
-- [ ] Test rendering in multiple viewers
-- [ ] Update this README if adding new diagrams
-- [ ] Include change notes in commit message
+## 🤝 Đóng Góp (Contributing)
 
-## 🤝 Contributing
+Nếu mở rộng hệ thống:
+1. Tạo file sơ đồ mới theo quy ước đặt tênn
+2. Cập nhật README index này
+3. Tham chiếu chéo trong tài liệu chính
+4. Duy trì styling và symbols nhất quán
 
-If you extend this system:
-1. Create new diagram files following naming convention
-2. Update this README index
-3. Cross-reference in main documentation
-4. Maintain consistent styling and symbols
 
----
-
-**All diagrams are created with Mermaid for easy maintenance and version control.**
-
-Last updated: December 2024
