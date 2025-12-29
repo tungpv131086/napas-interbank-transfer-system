@@ -1,4 +1,4 @@
-# Data Flow & Microservices Interaction Diagram
+# SƠ ĐỒ LUỒNG DỮ LIỆU & TƯƠNG TÁC MICROSERVICES
 
 ```mermaid
 flowchart TB
@@ -139,66 +139,66 @@ flowchart TB
     style MQ fill:#ff9ff3
 ```
 
-## Data Flow Scenarios
+## Các kịch bản luồng dữ liệu (Data Flow Scenarios)
 
-### Scenario 1: User Login
+### Kịch bản 1: Đăng nhập người dùng (User Login)
 ```
-1. User opens Bank A frontend
+1. Người dùng mở frontend Bank A
 2. Frontend → API Gateway → Auth Service
-3. Auth Service validates credentials against Auth DB
-4. Auth Service generates JWT token
+3. Auth Service xác thực thông tin đăng nhập với Auth DB
+4. Auth Service tạo JWT token
 5. Token returned to frontend
-6. Frontend stores token for subsequent requests
+6. Frontend lưu token cho các request tiếp theo
 ```
 
-### Scenario 2: View Account Balance
+### Kịch bản 2: Xem số dư tài khoản (View Account Balance)
 ```
-1. Frontend sends GET /api/accounts/BANKA001 (with JWT)
-2. API Gateway routes to Bank A Service
-3. Bank A Service queries Bank A Database
-4. Account data returned through Gateway to Frontend
-5. Frontend displays balance
+1. Frontend gửi GET /api/accounts/BANKA001 (kèm JWT)
+2. API Gateway định tuyến đến Bank A Service
+3. Bank A Service truy vấn Bank A Database
+4. Dữ liệu tài khoản được trả về qua Gateway đến Frontend
+5. Frontend hiển thị số dư
 ```
 
-### Scenario 3: Internal Transfer
+### Kịch bản 3: Chuyển tiền nội bộ (Internal Transfer)
 ```
-1. Frontend sends POST /api/transfer/internal
+1. Frontend gửi POST /api/transfer/internal
 2. API Gateway → Bank A Service
-3. Bank A Service validates accounts and balance
-4. Bank A Service updates both accounts in single transaction
-5. Bank A Service saves transaction record (Status: SUCCESS)
-6. Immediate response to user (< 100ms)
+3. Bank A Service xác thực tài khoản và số dư
+4. Bank A Service cập nhật cả hai tài khoản trong một transaction duy nhất
+5. Bank A Service lưu bản ghi transaction (Status: SUCCESS)
+6. Phản hồi ngay lập tức cho người dùng (< 100ms)
 ```
 
-### Scenario 4: Interbank Transfer (Bank A → Bank B)
+### Kịch bản 4: Chuyển tiền liên ngân hàng (Interbank Transfer) - Bank A → Bank B
 ```
-Step 1: Initiation (Bank A)
-├── User submits transfer request
-├── Bank A validates and deducts from sender
-├── Bank A saves transaction (Status: PENDING)
-└── Bank A publishes to transfer_napas queue
+Bước 1: Khởi tạo (Initiation) - Bank A
+├── Người dùng gửi yêu cầu chuyển tiền
+├── Bank A xác thực và trừ tiền từ người gửi
+├── Bank A lưu transaction (Status: PENDING)
+└── NAPAS publish message vào queue transfer_bankb
 
-Step 2: Routing (NAPAS)
-├── NAPAS Router consumes from transfer_napas
-├── NAPAS logs transaction to NAPAS DB
-├── NAPAS identifies destination bank (BANKB)
+Bước 2: Định tuyến (Routing) - NAPAS
+├── NAPAS Router consume message từ transfer_napas
+├── NAPAS ghi log transaction vào NAPAS DB
+├── NAPAS xác định ngân hàng đích (BANKB)
 └── NAPAS publishes to transfer_bankb queue
 
-Step 3: Processing (Bank B)
-├── Bank B Consumer consumes from transfer_bankb
-├── Bank B validates receiver account
-├── Bank B credits receiver
-├── Bank B saves transaction (Status: SUCCESS)
-└── Bank B publishes result to transfer_result
+Bước 3: Xử lý (Processing) - Bank B
+├── Bank B Consumer consume message từ transfer_bankb
+├── Bank B xác thực tài khoản người nhận
+├── Bank B cộng tiền cho người nhận
+├── Bank B lưu transaction (Status: SUCCESS)
+└── Bank B publish kết quả vào transfer_result
 
-Step 4: Reconciliation (NAPAS)
-├── NAPAS Processor consumes from transfer_result
-├── NAPAS updates transaction status
-├── NAPAS creates reconciliation record
-└── Transaction complete (Total: 2-3 seconds)
+Bước 4: Đối soát (Reconciliation) - NAPAS
+├── NAPAS Processor consume message từ transfer_result
+├── NAPAS cập nhật trạng thái transaction
+├── NAPAS tạo reconciliation record
+└── Giao dịch hoàn tất (Tổng: 2-3 giây)
 ```
 
-## Message Flow Patterns
+## Các mẫu luồng Message (Message Flow Patterns)
 
 ### Pattern 1: Point-to-Point (Bank → NAPAS)
 ```
@@ -224,102 +224,102 @@ Consumer: NAPAS Processor
 Pattern: Work Queue with multiple publishers
 ```
 
-## Data Consistency Models
+## Mô hình nhất quán dữ liệu (Data Consistency Models)
 
-### Strong Consistency (Internal Transfer)
+### Strong Consistency (Nhất quán mạnh) - Internal Transfer
 - Single database transaction
-- ACID properties guaranteed
-- Immediate consistency
-- Use case: Same-bank transfers
+- Đảm bảo thuộc tính ACID
+- Tính nhất quán ngay lập tức (immediate consistency)
+- Use case: Chuyển tiền cùng ngân hàng
 
-### Eventual Consistency (Interbank Transfer)
+### Eventual Consistency (Nhất quán cuối cùng) - Interbank Transfer
 - Distributed transaction
 - BASE properties (Basic Availability, Soft state, Eventual consistency)
-- Asynchronous processing
-- Use case: Cross-bank transfers
+- Xử lý bất đồng bộ (asynchronous processing)
+- Use case: Chuyển tiền liên ngân hàng
 
-## Error Handling Flows
+## Luồng xử lý lỗi (Error Handling Flows)
 
-### Error Type 1: Validation Error
+### Error Type 1: Lỗi xác thực (Validation Error)
 ```
-Request → Service validates → Returns 400 Bad Request
-- No database changes
-- Immediate response
-- User corrects and retries
-```
-
-### Error Type 2: Insufficient Balance
-```
-Request → Service checks balance → Returns 400 Bad Request
-- No database changes
-- Immediate response
-- User sees error message
+Request → Service xác thực → Trả về 400 Bad Request
+- Không có thay đổi database
+- Phản hồi ngay lập tức
+- Người dùng sửa và thử lại
 ```
 
-### Error Type 3: Destination Account Not Found
+### Error Type 2: Không đủ số dư (Insufficient Balance)
 ```
-Request → Bank A deducts → NAPAS routes → Bank B fails
-- Bank A: Money deducted (PENDING)
-- Bank B: Returns FAILED status
-- NAPAS: Records failure
-- Requires: Manual refund or auto-compensation
+Request → Service kiểm tra số dư → Trả về 400 Bad Request
+- Không có thay đổi database
+- Phản hồi ngay lập tức
+- Người dùng thấy thông báo lỗi
 ```
 
-### Error Type 4: Service Unavailable
+### Error Type 3: Không tìm thấy tài khoản đích (Destination Account Not Found)
+```
+Request → Bank A trừ tiền → NAPAS định tuyến → Bank B thất bại
+- Bank A: Tiền đã trừ (PENDING)
+- Bank B: Trả về status FAILED
+- NAPAS: Ghi nhận thất bại
+- Yêu cầu: Hoàn tiền thủ công hoặc bồi thường tự động (auto-compensation)
+```
+
+### Error Type 4: Service không khả dụng (Service Unavailable)
 ```
 Request → Service down → Message queued
-- RabbitMQ holds message
-- Automatic retry when service recovers
-- No message loss
+- RabbitMQ giữ message
+- Tự động retry khi service phục hồi
+- Không mất message
 ```
 
-## Performance Characteristics
+## Đặc tính hiệu năng (Performance Characteristics)
 
-| Operation | Latency | Consistency | Synchronous |
+| Thao tác | Độ trễ (Latency) | Tính nhất quán (Consistency) | Đồng bộ |
 |-----------|---------|-------------|-------------|
-| Login | 30-50ms | Strong | Yes |
-| View Balance | 10-20ms | Strong | Yes |
-| Internal Transfer | 50-100ms | Strong | Yes |
-| Interbank Transfer (Initiate) | 100-200ms | Strong (sender) | Yes |
-| Interbank Transfer (Complete) | 2-3 sec | Eventual | No |
-| Transaction History | 20-50ms | Strong | Yes |
-| Statistics | 50-100ms | Strong | Yes |
+| Đăng nhập (Login) | 30-50ms | Strong | Yes |
+| Xem số dư (View Balance) | 10-20ms | Strong | Yes |
+| Chuyển tiền nội bộ (Internal Transfer) | 50-100ms | Strong | Yes |
+| Chuyển tiền liên NH (Khởi tạo) | 100-200ms | Strong (sender) | Yes |
+| Chuyển tiền liên NH (Hoàn tất) | 2-3 sec | Eventual | No |
+| Lịch sử giao dịch (Transaction History)| 20-50ms | Strong | Yes |
+| Thống kê (Statistics) | 50-100ms | Strong | Yes |
 
-## Monitoring Points
+## Các điểm giám sát (Monitoring Points)
 
-### Application Metrics
-- API request rate and latency
-- Database query performance
-- Message queue depth
-- Consumer lag
-- Error rates
+### Application Metrics (Số liệu ứng dụng)
+- Tốc độ request API và độ trễ (API request rate and latency)
+- Hiệu năng truy vấn database (database query performance)
+- Độ sâu message queue (message queue depth)
+- Consumer lag (độ trễ consumer)
+- Tỷ lệ lỗi (error rates)
 
-### Infrastructure Metrics
-- CPU and memory usage
-- Network bandwidth
+### Infrastructure Metrics (Số liệu hạ tầng)
+- Sử dụng CPU và memory
+- Băng thông mạng (network bandwidth)
 - Disk I/O
-- Container health
+- Sức khỏe container (container health)
 
-### Business Metrics
-- Total transactions
-- Success rate
-- Average transfer amount
-- Peak usage times
-- Daily/monthly volume
+### Business Metrics (Số liệu nghiệp vụ)
+- Tổng số giao dịch (total transactions)
+- Tỷ lệ thành công (success rate)
+- Số tiền chuyển trung bình (average transfer amount)
+- Thời điểm sử dụng cao điểm (peak usage times)
+- Khối lượng hàng ngày/tháng (daily/monthly volume)
 
-## Scalability Points
+## Các điểm mở rộng (Scalability Points)
 
-### Horizontal Scaling
-- Add more service instances
-- Load balance across instances
-- Scale databases with read replicas
+### Horizontal Scaling (Mở rộng ngang)
+- Thêm nhiều service instances hơn
+- Load balance trên các instances
+- Mở rộng databases với read replicas
 
-### Vertical Scaling
-- Increase container resources
-- Optimize database queries
-- Add indexes
+### Vertical Scaling (Mở rộng dọc)
+- Tăng tài nguyên container
+- Tối ưu hóa database queries
+- Thêm indexes
 
-### Message Queue Scaling
-- Add more consumers
-- Partition queues
-- Increase queue workers
+### Message Queue Scaling (Mở rộng Message Queue)
+- Thêm nhiều consumers hơn
+- Phân vùng queues (partition queues)
+- Tăng queue workers
