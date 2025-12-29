@@ -1,4 +1,4 @@
-# System Architecture Overview - NAPAS 24/7 Fast Transfer Simulation
+# Tổng Quan Kiến Trúc Hệ Thống - Mô Phỏng Chuyển Tiền Nhanh NAPAS 24/7
 
 ```mermaid
 graph TB
@@ -113,94 +113,94 @@ graph TB
     style SHARED fill:#95e1d3
 ```
 
-## Architecture Layers
+## Các tầng kiến trúc (Architecture Layers)
 
-### 1. Frontend Layer
-- **Technology**: HTML5 + Bootstrap 5 + Vanilla JavaScript
-- **Pattern**: Single Page Application (SPA)
-- **Communication**: REST API via Fetch
-- **Features**: Login, Account View, Transfers, Transaction History
+### 1. Tầng Frontend (Frontend Layer)
+- **Công nghệ**: HTML5 + Bootstrap 5 + Vanilla JavaScript
+- **Mẫu thiết kế (Pattern)**: Single Page Application (SPA)
+- **Giao tiếp (Communication)**: REST API thông qua Fetch
+- **Tính năng (Features)**: Đăng nhập, Xem tài khoản, Chuyển tiền, Lịch sử giao dịch
 
-### 2. API Gateway Layer
-- **Technology**: Ocelot (ASP.NET Core)
-- **Purpose**: Single entry point, routing, CORS
-- **Pattern**: Gateway Aggregation
+### 2. Tầng API Gateway (API Gateway Layer)
+- **Công nghệ**: Ocelot (ASP.NET Core)
+- **Mục đích (Purpose)**:  Điểm vào duy nhất, định tuyến (routing), CORS
+- **Mẫu thiết kế**: Gateway Aggregation
 - **Port**: 5000
 
-### 3. Service Layer
-- **Technology**: .NET 8 Minimal APIs
-- **Pattern**: Microservices Architecture
-- **Database**: Database per Service
-- **Communication**:
-  - Synchronous: HTTP/REST
-  - Asynchronous: RabbitMQ
+### 3. Tầng Service (Service Layer)
+- **Công nghệ**: .NET 8 Minimal APIs
+- **Mẫu thiết kế**: Kiến trúc Microservices (Microservices Architecture)
+- **Database**: Database per Service (Cơ sở dữ liệu riêng cho mỗi service)
+- **Giao tiếp**:
+  - Đồng bộ (Synchronous): HTTP/REST
+  - Bất đồng bộ (Asynchronous): RabbitMQ
 
-### 4. Message Broker Layer
-- **Technology**: RabbitMQ
-- **Pattern**: Message Queue, Publish-Subscribe
+### 4. Tầng Message Broker (Message Broker Layer)
+- **Công nghệ**: RabbitMQ
+- **Mẫu thiết kế**: Message Queue, Publish-Subscribe
 - **Queues**: 5 durable queues with persistent messages
-- **Purpose**: Async, decoupled, reliable communication
+- **Mục đích**: Giao tiếp async (bất đồng bộ), decoupled (tách biệt), đáng tin cậy (reliable)
 
-### 5. Data Layer
-- **Technology**: PostgreSQL 15
-- **Pattern**: Database per Service
+### 5. Tầng Data (Data Layer)
+- **Công nghệ**: PostgreSQL 15
+- **Mẫu thiết kế**: Database per Service
 - **ORM**: Entity Framework Core 8
-- **Migration**: Code-First with automatic migrations
+- **Migration**: Code-First với automatic migrations (tự động migrate)
 
-## Key Design Patterns
+## Các mẫu thiết kế chính (Key Design Patterns)
 
 ### 1. Microservices Pattern
-- Each service is independently deployable
-- Each service has its own database
-- Services communicate via API and message queue
+- Mỗi service có thể triển khai độc lập (independently deployable)
+- Mỗi service sở hữu dữ liệu của riêng mình
+- Các service giao tiếp qua API và message queue
 
-### 2. Database per Service
-- Data isolation and independence
+### 2. Database per Service (Database riêng cho mỗi Service)
+- Cô lập và độc lập dữ liệu (data isolation and independence)
 - Each service owns its data
-- No direct database access between services
+- Không truy cập trực tiếp database giữa các service
 
-### 3. Event-Driven Architecture
-- Asynchronous communication via messages
-- Loose coupling between services
-- Eventual consistency
+### 3. Event-Driven Architecture (Kiến trúc hướng sự kiện)
+- Giao tiếp bất đồng bộ thông qua messages
+- Loose coupling (liên kết lỏng lẻo) giữa các service
+- Eventual consistency (tính nhất quán cuối cùng)
 
 ### 4. API Gateway Pattern
-- Single entry point for clients
-- Request routing and aggregation
-- Cross-cutting concerns (CORS, auth)
+- Điểm vào duy nhất cho clients
+- Định tuyến và tổng hợp request (request routing and aggregation)
+- Xử lý các mối quan tâm chung (cross-cutting concerns): CORS, auth
 
 ### 5. Background Service Pattern
 - Long-running hosted services
 - Message queue consumers
-- Async processing
+- Xử lý bất đồng bộ (async processing)
 
 ## Technology Stack
 
-| Layer | Technology | Version | Purpose |
+| Tầng | Công nghệ | Phiên bản | Mục đích |
 |-------|-----------|---------|---------|
 | Backend | .NET | 8.0 | Microservices runtime |
-| ORM | Entity Framework Core | 8.0 | Database abstraction |
-| Database | PostgreSQL | 15 | Data persistence |
+| ORM | Entity Framework Core | 8.0 | Database abstraction (trừu tượng hóa DB) |
+| Database | PostgreSQL | 15 | Data persistence (lưu trữ dữ liệu) |
 | Message Broker | RabbitMQ | 3.x | Async messaging |
-| API Gateway | Ocelot | 23.4 | Request routing |
+| API Gateway | Ocelot | 23.4 | Request routing (định tuyến request) |
 | Frontend | HTML/CSS/JS | - | User interface |
 | UI Framework | Bootstrap | 5.3 | Responsive design |
 | Container | Docker | - | Containerization |
 | Orchestration | Docker Compose | - | Multi-container setup |
 
-## Service Communication
+## Giao tiếp giữa các Service (Service Communication)
 
-### Synchronous (HTTP/REST)
+### Đồng bộ (Synchronous - HTTP/REST)
 - Frontend → API Gateway → Services
-- Used for: Authentication, queries, internal transfers
-- Response: Immediate (< 100ms)
+- Sử dụng cho: Authentication, queries (truy vấn), internal transfers
+- Phản hồi (Response): Ngay lập tức (< 100ms)
 
-### Asynchronous (RabbitMQ)
+### Bất đồng bộ (Asynchronous - RabbitMQ)
 - Bank → NAPAS → Bank
-- Used for: Interbank transfers
-- Response: Eventual (2-3 seconds)
+- Sử dụng cho: Interbank transfers (chuyển tiền liên ngân hàng)
+- Phản hồi: Cuối cùng (Eventual) (~2-3 giây)
 
-## Deployment Architecture
+## Kiến trúc triển khai (Deployment Architecture)
 
 ```
 Docker Compose
@@ -210,63 +210,63 @@ Docker Compose
 └── 1 Docker network (napas-network)
 ```
 
-## Scalability Considerations
+## Cân nhắc về khả năng mở rộng (Scalability Considerations)
 
-### Horizontal Scaling
-- Multiple instances per service
-- Load balancer in front of API Gateway
-- Database read replicas
+### Mở rộng ngang (Horizontal Scaling)
+- Nhiều instances cho mỗi service
+- Load balancer đặt trước API Gateway
+- Database read replicas (bản sao đọc)
 
-### Vertical Scaling
-- Increase container resources
-- Database optimization
+### Mở rộng dọc (Vertical Scaling)
+- Tăng tài nguyên container
+- Tối ưu hóa database (database optimization)
 - Connection pooling
 
-### Message Queue Scaling
+### Mở rộng Message Queue (Message Queue Scaling)
 - RabbitMQ clustering
-- Queue partitioning
+- Queue partitioning (phân vùng queue)
 - Consumer groups
 
-## Security Architecture
+## Kiến trúc bảo mật (Security Architecture)
 
-### Current (Demo)
-- Basic JWT authentication
-- Plaintext passwords
-- Open CORS policy
-- HTTP only
+### Hiện tại (Demo)
+- JWT authentication cơ bản
+- Mật khẩu plaintext (văn bản thuần)
+- CORS policy mở
+- Chỉ HTTP
 
-### Production Required
-- BCrypt password hashing
-- HTTPS/TLS everywhere
-- API rate limiting
-- Input validation
-- Secret management
-- Database encryption
-- Audit logging
+### Yêu cầu cho Production (Production Required)
+- BCrypt password hashing (mã hóa mật khẩu)
+- HTTPS/TLS ở mọi nơi
+- API rate limiting (giới hạn tốc độ)
+- Input validation (xác thực đầu vào)
+- Secret management (quản lý bí mật)
+- Database encryption (mã hóa database)
+- Audit logging (ghi log kiểm toán)
 
-## Monitoring & Observability
+## Giám sát & Khả năng quan sát (Monitoring & Observability)
 
-### Recommended Tools
-- **Metrics**: Prometheus + Grafana
-- **Logging**: Serilog + ELK Stack
-- **Tracing**: OpenTelemetry + Jaeger
-- **APM**: Application Insights
-- **Alerts**: PagerDuty
+### Công cụ khuyến nghị (Recommended Tools)
+- **Metrics (Số liệu)**: Prometheus + Grafana
+- **Logging (Ghi log)**: Serilog + ELK Stack
+- **Tracing (Truy vết)**: OpenTelemetry + Jaeger
+- **APM (Application Performance Monitoring)**: Application Insights
+- **Alerts (Cảnh báo)**: PagerDuty
 
-## High Availability
+## High Availability (Tính sẵn sàng cao)
 
 ### Database
-- Master-slave replication
-- Automatic failover
-- Point-in-time recovery
+- Master-slave replication (sao chép chủ-tớ)
+- Automatic failover (chuyển đổi dự phòng tự động)
+- Point-in-time recovery (khôi phục theo thời điểm)
 
 ### Services
-- Multiple instances
+- Multiple instances (nhiều instances)
 - Health checks
-- Circuit breakers
-- Retry policies (Polly)
+- Circuit breakers (bộ ngắt mạch)
+- Retry policies (chính sách thử lại) - Polly
 
 ### Message Queue
 - RabbitMQ clustering
-- Persistent messages
+- Persistent messages (messages bền vững)
 - Dead letter queues
