@@ -40,6 +40,6 @@ INSERT INTO Users (Id, Username, Password, BankCode, Role) VALUES
 
 ## Notes
 
-- **Security**: In production, passwords should be hashed using BCrypt or similar
-- **JWT**: Tokens include Username, BankCode, and Role claims
-- **Relationships**: Users belong to a bank via BankCode
+- **Security**: Trong môi trường production, mật khẩu nên được mã hóa bằng BCrypt hoặc thuật toán tương tự
+- **JWT**: Tokens bao gồm các claims Username, BankCode, và Role
+- **Relationships**: Users thuộc về một ngân hàng thông qua BankCode
