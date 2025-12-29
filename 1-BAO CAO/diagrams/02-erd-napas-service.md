@@ -71,9 +71,9 @@ CREATE INDEX idx_from_bank ON NAPAS_TRANSACTIONS(FromBankCode);
 CREATE INDEX idx_to_bank ON NAPAS_TRANSACTIONS(ToBankCode);
 ```
 
-## Business Rules
+## Quy tắc nghiệp vu:
 
-1. Every interbank transfer creates a NapasTransaction record
-2. Upon completion (SUCCESS/FAILED), a ReconciliationRecord is created
-3. ReconciliationRecords are used for settlement between banks
-4. NAPAS acts as a trusted third party maintaining complete audit trail
+1. Mỗi giao dịch chuyển tiền liên ngân hàng tạo ra một bản ghi NapasTransaction
+2. Khi hoàn thành (SUCCESS/FAILED), một bản ghi ReconciliationRecord được tạo
+3. ReconciliationRecords được sử dụng để đối soát giữa các ngân hàng
+4. NAPAS đóng vai trò là bên thứ ba đáng tin cậy, duy trì đầy đủ audit trail (nhật ký kiểm toán)
