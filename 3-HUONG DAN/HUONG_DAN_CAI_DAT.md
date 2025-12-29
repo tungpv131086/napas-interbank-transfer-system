@@ -1,7 +1,6 @@
 # HƯỚNG DẪN CÀI ĐẶT VÀ TRIỂN KHAI
 ## HỆ THỐNG CHUYỂN TIỀN LIÊN NGÂN HÀNG NAPAS
 
-> **Dành cho:** Giảng viên  
 > **Mục đích:** Cài đặt và chạy hệ thống trên máy local  
 > **Thời gian:** ~15-20 phút  
 > **Hệ điều hành:** Windows/macOS/Linux
