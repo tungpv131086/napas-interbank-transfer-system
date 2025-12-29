@@ -150,7 +150,7 @@ Tất cả sơ đồ sử dụng cú pháp Mermaid và có thể xem trên:
 - **Tím/Xanh dương**: Liên quan Bank A
 - **Xanh lá**: Liên quan Bank B
 - **Hồng**: Liên quan Bank C
-- **Cyan**: Liên quan Bank Napas
+- **Cyan**: Liên quan Napas
 - **Đỏ**: Authentication related
 - **Vàng**: API Gateway
 - **Hồng**: Message Queue
