@@ -92,26 +92,26 @@ CREATE INDEX idx_created_at ON TRANSACTIONS(CreatedAt);
 CREATE INDEX idx_status ON TRANSACTIONS(Status);
 ```
 
-## Business Rules
+## Quy tắc nghiệp vụ(Business Rules)
 
-1. **Internal Transfer**:
-   - Both accounts in same bank
+1. **Chuyển tiền nội bộ(Internal Transfer)**:
+   - Cả hai tài khoản thuộc cùng một ngân hàng
    - ToBankCode is NULL
    - Type = "INTERNAL"
-   - Status immediately set to SUCCESS
-   - Balance updated in single transaction
+   - Status được đặt ngay lập tức thành SUCCESS
+   - Balance được cập nhật trong một transaction duy nhất
 
-2. **Interbank Transfer**:
-   - Accounts in different banks
+2. **Chuyển tiền liên ngân hàng(Interbank Transfer)**:
+   - Các tài khoản thuộc các ngân hàng khác nhau
    - ToBankCode is populated
    - Type = "INTERBANK"
    - Initial Status = PENDING
-   - Sender balance deducted immediately
-   - Receiver balance credited asynchronously
-   - Status updated upon completion
+   - Balance của người gửi được trừ ngay lập tức
+   - Balance của người nhận được cộng bất đồng bộ (asynchronously)
+   - Status được cập nhật khi hoàn thành
 
-3. **Constraints**:
-   - Balance cannot be negative
-   - Amount must be positive
-   - FromAccount and ToAccount must exist
-   - Sufficient balance required before transfer
+3. **Ràng buộc (Constraints)**:
+   - Balance không được âm
+   - Amount phải là số dương
+   - FromAccount và ToAccount phải tồn tại
+   - Yêu cầu đủ số dư (sufficient balance) trước khi chuyển tiền
